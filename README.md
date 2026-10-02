@@ -1,4 +1,6 @@
-# Utilisation
+# Zog SHell
+
+## Utilisation
 
 Le module `zog` fournit **`zogsh`**, le lanceur du **Zog Shell** : un client en ligne de commande pour les serveurs Xcraft. Il se connecte à un serveur local ou distant, via ses ports de commandes et d'événements, pour l'administrer, l'inspecter ou le piloter.
 
