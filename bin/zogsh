@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+"use strict";
+
+const path = require("node:path");
+
+process.env.XCRAFT_ROOT = path.join(__dirname, "..");
+
+const xEtc = require("xcraft-core-etc")();
+
+/* Load all default settings */
+const override = path.resolve("./etc.js");
+xEtc.createAll(
+  path.resolve("./node_modules/"),
+  /^(goblin-|(xcraft-(core|contrib)))/,
+  override
+);
+
+/* Load the Zog Shell */
+require(path.join(__dirname, "../node_modules/xcraft-zog/bin/zog"));
