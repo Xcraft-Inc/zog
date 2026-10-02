@@ -2,15 +2,21 @@
 "use strict";
 
 const path = require("node:path");
+const fs = require("node:fs");
 
-process.env.XCRAFT_ROOT = path.join(__dirname, "..");
+const xcraftRoot = path.join(__dirname, "..");
+process.env.XCRAFT_ROOT = xcraftRoot;
+fs.writeFileSync(
+  path.join(__dirname, "../etc/xcraft/config.json"),
+  JSON.stringify({ xcraftRoot })
+);
 
 const xEtc = require("xcraft-core-etc")();
 
 /* Load all default settings */
-const override = path.resolve("./etc.js");
+const override = path.join(__dirname, "../etc.js");
 xEtc.createAll(
-  path.resolve("./node_modules/"),
+  path.join(__dirname, "../node_modules/"),
   /^(goblin-|(xcraft-(core|contrib)))/,
   override
 );
@@ -20,4 +26,4 @@ if (process.argv.indexOf("--") === -1) {
 }
 
 /* Load the Zog Shell */
-require(path.join(__dirname, "../node_modules/xcraft-zog/bin/zog"));
+require("xcraft-zog/bin/zog");
