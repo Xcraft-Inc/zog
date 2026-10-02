@@ -15,5 +15,9 @@ xEtc.createAll(
   override
 );
 
+if (process.argv.indexOf("--") === -1) {
+  process.argv.push("--");
+}
+
 /* Load the Zog Shell */
 require(path.join(__dirname, "../node_modules/xcraft-zog/bin/zog"));
